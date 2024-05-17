@@ -16,8 +16,15 @@ spring:
       discovery:
         locator:
           enabled: true
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
       routes:
         - id: car-service
           uri: lb://car-service
           predicates:
-            - Path=/car/**
+            - Path=/car**
