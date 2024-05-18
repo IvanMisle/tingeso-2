@@ -21,3 +21,11 @@ spring:
           uri: lb://car-service
           predicates:
             - Path=/car**
+        - id: data-service
+          uri: lb://data-service
+          predicates:
+            - Path=/data**
+        - id: repair-service
+          uri: lb://repair-service
+          predicates:
+            - Path=/repair**
