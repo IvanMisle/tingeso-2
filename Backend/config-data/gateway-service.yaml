@@ -29,3 +29,7 @@ spring:
           uri: lb://repair-service
           predicates:
             - Path=/repair**
+        - id: report-service
+          uri: lb://report-service
+          predicates:
+            - Path=/report**
