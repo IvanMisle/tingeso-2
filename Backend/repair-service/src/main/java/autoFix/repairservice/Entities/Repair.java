@@ -19,6 +19,10 @@ public class Repair {
 
     private LocalDateTime dateTimeEntry;
     private Integer amount;
+    private Float totalDiscount;
+    private Float totalFee;
+    private Float iva;
+    private Float finalCost;
     private LocalDateTime dateTimeExit;
     private LocalDateTime dateTimePickUp;
     private Long id_bonus;
