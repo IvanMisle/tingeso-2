@@ -1,7 +1,7 @@
 import httpClient from "../http-common";
 
 const getAll = () => {
-    return httpClient.get('/api/v1/car/');
+    return httpClient.get('/car/');
 }
 
 const create = data => {
@@ -9,7 +9,7 @@ const create = data => {
 }
 
 const get = id => {
-    return httpClient.get(`/api/v1/car/${id}`);
+    return httpClient.get(`/car/${id}`);
 }
 
 const update = data => {
