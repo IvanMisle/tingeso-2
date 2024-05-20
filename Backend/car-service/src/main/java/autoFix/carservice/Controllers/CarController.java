@@ -1,6 +1,7 @@
 package autoFix.carservice.Controllers;
 
 import autoFix.carservice.Entities.Car;
+import autoFix.carservice.Repositories.CarRepository;
 import autoFix.carservice.Services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +32,17 @@ public class CarController {
     public ResponseEntity<Car> save(@RequestBody Car car) {
         Car newCar = carService.save(car);
         return ResponseEntity.ok(newCar);
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<Car> update(@RequestBody Car car) {
+        Car newCar = carService.save(car);
+        return ResponseEntity.ok(newCar);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) throws Exception {
+        var isDeleted = carService.deleteById(id);
+        return ResponseEntity.ok(isDeleted);
     }
 }

@@ -23,4 +23,13 @@ public class CarService {
     public Car findById(Long id) {
         return carRepository.findById(id).get();
     }
+
+    public boolean deleteById(Long id) throws Exception {
+        try {
+            carRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
 }

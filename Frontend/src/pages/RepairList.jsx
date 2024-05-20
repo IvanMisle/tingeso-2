@@ -26,24 +26,6 @@ function RepairList() {
   const { id } = useParams();
   const [repairs, setRepairs] = useState([]);
 
-  function getBonusById(idBonus) {
-    if (!idBonus) {
-      setBonus(0);
-    }
-    bonusService
-      .getBonusById(idBonus)
-      .then((response) => {
-        console.log("Bonus has been obtained.", response.data.bonus);
-        setBonus(response.data.bonus);
-      })
-      .catch((error) => {
-        console.log(
-          "An error occurred while trying to get bonus by id.",
-          error
-        );
-      });
-  }
-
   function init() {
     repairService
       .getByIdCar(id)
@@ -131,17 +113,17 @@ function RepairList() {
                   {dayjs(repair.dateTimePickUp).format("YYYY-MM-DD HH:mm:ss")}
                 </TableCell>
                 <TableCell align="center">
-                  <Types id={repair.id} />
+                  <h1>types</h1>
                 </TableCell>
                 <TableCell align="center">
-                  <BonoRepair id={repair.id_bonus} />
+                  <h1>
+                    bonus
+                  </h1>
                 </TableCell>
                 <TableCell align="center">
-                  <EditButtonRepair
-                    id={repair.id}
-                    id_car={id}
-                    oldBonus={repair.id_bonus}
-                  />
+                  <h1>
+                    edit button
+                  </h1>
                 </TableCell>
                 <TableCell align="center">
                   <IconButton
