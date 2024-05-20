@@ -20,16 +20,16 @@ spring:
         - id: car-service
           uri: lb://car-service
           predicates:
-            - Path=/car**
+            - Path=/car/**
         - id: data-service
           uri: lb://data-service
           predicates:
-            - Path=/data**
+            - Path=/data/**
         - id: repair-service
           uri: lb://repair-service
           predicates:
-            - Path=/repair**
+            - Path=/repair/**
         - id: report-service
           uri: lb://report-service
           predicates:
-            - Path=/report**
+            - Path=/report/**
