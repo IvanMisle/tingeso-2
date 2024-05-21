@@ -1,7 +1,6 @@
 package autoFix.carservice.Controllers;
 
 import autoFix.carservice.Entities.Car;
-import autoFix.carservice.Repositories.CarRepository;
 import autoFix.carservice.Services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
