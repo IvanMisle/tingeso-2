@@ -16,6 +16,9 @@ spring:
       discovery:
         locator:
           enabled: true
+      globalcors:
+        cors-configurations:
+          '[/**]':
       routes:
         - id: car-service
           uri: lb://car-service
