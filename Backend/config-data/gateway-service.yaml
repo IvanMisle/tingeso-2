@@ -19,6 +19,7 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
+            allowedHeaders: "*"
       routes:
         - id: car-service
           uri: lb://car-service
