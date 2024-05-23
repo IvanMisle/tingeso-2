@@ -36,3 +36,11 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+jar {
+	archiveFileName.set('gateway-service.jar')
+}
+
+test {
+	enabled = false
+}

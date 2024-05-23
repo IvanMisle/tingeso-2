@@ -46,3 +46,11 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+jar {
+	archiveFileName.set('car-service.jar')
+}
+
+test {
+	enabled = false
+}

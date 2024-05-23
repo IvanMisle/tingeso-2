@@ -35,3 +35,11 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+jar {
+	archiveFileName.set('eureka-service.jar')
+}
+
+test {
+	enabled = false
+}
