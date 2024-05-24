@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/repair/typeRepair")
-@CrossOrigin
 public class TypeRepairController {
     @Autowired
     private TypeRepairService typeRepairService;

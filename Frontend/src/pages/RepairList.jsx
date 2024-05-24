@@ -1,8 +1,6 @@
 import { useParams, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import repairService from "../services/repair.service";
-import bonusService from "../services/bonus.service";
-import Types from "../components/Types";
 import {
   Box,
   Button,
@@ -16,11 +14,10 @@ import {
   TableRow,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import dayjs from "dayjs";
-import BonoRepair from "../components/BonoRepair";
-import EditButtonRepair from "../components/EditButtonRepair";
 
 function RepairList() {
   const { id } = useParams();
@@ -89,11 +86,14 @@ function RepairList() {
           <TableHead>
             <TableRow>
               <TableCell align="left">Fecha y hora de entrada</TableCell>
-              <TableCell align="center">Monto base</TableCell>
+              <TableCell align="center">Monto base ($)</TableCell>
+              <TableCell align="center">Total descuentos</TableCell>
+              <TableCell align="center">Total recargos</TableCell>
+              <TableCell align="center">Monto IVA ($)</TableCell>
+              <TableCell align="center">Precio final ($)</TableCell>
               <TableCell align="center">Fecha y hora de salida</TableCell>
               <TableCell align="center">Fecha y hora de retiro</TableCell>
-              <TableCell align="center">Reparaciones a realizar</TableCell>
-              <TableCell align="center">Bono</TableCell>
+              <TableCell align="center">Bono ($)</TableCell>
               <TableCell align="center">Editar</TableCell>
               <TableCell align="center">Ver detalles</TableCell>
               <TableCell align="center">Eliminar reparacion</TableCell>
@@ -105,25 +105,27 @@ function RepairList() {
                 <TableCell>
                   {dayjs(repair.dateTimeEntry).format("YYYY-MM-DD HH:mm:ss")}
                 </TableCell>
-                <TableCell align="center">{repair.amount}</TableCell>
+                <TableCell align="center">{repair.amount * 1}</TableCell>
+                <TableCell align="center">
+                  {repair.totalDiscount * 100}%
+                </TableCell>
+                <TableCell align="center">{repair.totalFee * 100}%</TableCell>
+                <TableCell align="center">{repair.iva * 1}</TableCell>
+                <TableCell align="center">{repair.finalCost * 1}</TableCell>
                 <TableCell align="center">
                   {dayjs(repair.dateTimeExit).format("YYYY-MM-DD HH:mm:ss")}
                 </TableCell>
                 <TableCell align="center">
                   {dayjs(repair.dateTimePickUp).format("YYYY-MM-DD HH:mm:ss")}
                 </TableCell>
+                <TableCell align="center">{repair.bonus * 1}</TableCell>
                 <TableCell align="center">
-                  <h1>types</h1>
-                </TableCell>
-                <TableCell align="center">
-                  <h1>
-                    bonus
-                  </h1>
-                </TableCell>
-                <TableCell align="center">
-                  <h1>
-                    edit button
-                  </h1>
+                  <IconButton
+                    component={NavLink}
+                    to={`/editRepair/${id}/${repair.id}`}
+                  >
+                    <EditIcon />
+                  </IconButton>
                 </TableCell>
                 <TableCell align="center">
                   <IconButton

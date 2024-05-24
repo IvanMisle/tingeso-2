@@ -12,8 +12,16 @@ public class RepairService {
     @Autowired
     private RepairRepository repairRepository;
 
+    public Repair getByID(Long id) {
+        return repairRepository.findById(id).get();
+    }
+
     public List<Repair> getByIdCar(Long id_car) {
         return repairRepository.findByIdCar(id_car);
+    }
+
+    public Repair save(Repair repair) {
+        return repairRepository.save(repair);
     }
 
     public boolean delete(Long id) throws Exception{

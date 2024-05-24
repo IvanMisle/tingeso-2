@@ -25,5 +25,6 @@ public class Repair {
     private Float finalCost;
     private LocalDateTime dateTimeExit;
     private LocalDateTime dateTimePickUp;
+    private Integer bonus;
     private Long idCar;
 }

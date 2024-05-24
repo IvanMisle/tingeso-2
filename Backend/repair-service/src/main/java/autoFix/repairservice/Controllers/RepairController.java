@@ -10,15 +10,32 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/repair")
-@CrossOrigin
 public class RepairController {
     @Autowired
     private RepairService repairService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Repair> getRepairById(@PathVariable Long id) {
+        Repair repair = repairService.getByID(id);
+        return ResponseEntity.ok(repair);
+    }
 
     @GetMapping("/getByIdCar/{id_car}")
     public ResponseEntity<List<Repair>> getByIdCar(@PathVariable("id_car") Long id_car) {
         List<Repair> repairs = repairService.getByIdCar(id_car);
         return ResponseEntity.ok(repairs);
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<Repair> save(@RequestBody Repair repair) {
+        Repair result = repairService.save(repair);
+        return ResponseEntity.ok(result);
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<Repair> update(@RequestBody Repair repair) {
+        Repair result = repairService.save(repair);
+        return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/{idRepair}")
