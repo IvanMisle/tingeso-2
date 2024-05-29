@@ -6,10 +6,6 @@ import AddEditCar from "./pages/AddEditCar";
 import RepairList from "./pages/RepairList";
 import AddEditRepair from "./pages/AddEditRepair";
 import DetailRepair from "./pages/DetailRepair";
-import R1 from "./pages/R1";
-import R2 from "./pages/R2";
-import R3 from "./pages/R3";
-import R4 from "./pages/R4";
 
 const routes = [
   {
@@ -47,22 +43,6 @@ const routes = [
   {
     path: "/DetailRepair/:id/:id_car",
     component: <DetailRepair />,
-  },
-  {
-    path: "r1",
-    component: <R1 />,
-  },
-  {
-    path: "/r2",
-    component: <R2 />,
-  },
-  {
-    path: "/r3",
-    component: <R3 />,
-  },
-  {
-    path: "/r4",
-    component: <R4 />,
   },
 ];
 

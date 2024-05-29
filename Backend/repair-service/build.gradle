@@ -46,3 +46,11 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+jar {
+	archiveFileName.set('repair-service.jar')
+}
+
+test {
+	enabled = false
+}

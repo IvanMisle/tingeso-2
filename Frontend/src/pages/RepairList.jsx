@@ -113,10 +113,14 @@ function RepairList() {
                 <TableCell align="center">{repair.iva * 1}</TableCell>
                 <TableCell align="center">{repair.finalCost * 1}</TableCell>
                 <TableCell align="center">
-                  {dayjs(repair.dateTimeExit).format("YYYY-MM-DD HH:mm:ss")}
+                  {repair.dateTimeExit
+                    ? dayjs(repair.dateTimeExit).format("YYYY-MM-DD HH:mm:ss")
+                    : "Sin asignar"}
                 </TableCell>
                 <TableCell align="center">
-                  {dayjs(repair.dateTimePickUp).format("YYYY-MM-DD HH:mm:ss")}
+                  {repair.dateTimePickUp
+                    ? dayjs(repair.dateTimePickUp).format("YYYY-MM-DD HH:mm:ss")
+                    : "Sin asignar"}
                 </TableCell>
                 <TableCell align="center">{repair.bonus * 1}</TableCell>
                 <TableCell align="center">
