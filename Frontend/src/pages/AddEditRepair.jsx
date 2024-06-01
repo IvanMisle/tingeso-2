@@ -42,6 +42,15 @@ function AddEditRepair() {
     if (id) {
       setTitleForm("Editar reparación");
       repairService
+        .getNumbersByIdRepair(id)
+        .then((response) => {
+          setTypesToAdd(response.data);
+        })
+        .catch((error) => {
+          console.log("Error al obtener los tipos de reparaciones de la reparación", error);
+        }
+      );
+      repairService
         .get(id)
         .then((repair) => {
           setDateTimeEntry(dayjs(repair.data.dateTimeEntry));
@@ -59,6 +68,18 @@ function AddEditRepair() {
       setTitleForm("Añadir una nueva reparación");
     }
   }, []);
+
+  async function addTypes(idRepair) {
+    repairService
+      .addTypes(idRepair, typesToAdd)
+      .then((response) => {
+        console.log("Tipos de reparación han sido añadidos.", response.data);
+        navigate(`/repairList/${id_Car}`);
+      })
+      .catch((error) => {
+        console.log("Error al añadir tipos de reparación", error);
+      });
+  }
 
   async function saveEditRepair(e) {
     e.preventDefault();
@@ -105,16 +126,19 @@ function AddEditRepair() {
         .catch((error) => {
           console.log("Error al actualizar reparación", error);
         });
+      addTypes(id);
     } else {
-      repairService
+      let idRepair;
+      await repairService
         .create(repair)
         .then((response) => {
+          idRepair = response.data.id;
           console.log("Reparación ha sido creada.", response.data);
-          navigate(`/repairList/${id_Car}`);
         })
         .catch((error) => {
           console.log("Error al crear reparación", error);
         });
+      addTypes(idRepair);
     }
   }
 

@@ -5,9 +5,7 @@ import autoFix.dataservice.Services.TypeRepairService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,5 +20,17 @@ public class TypeRepairController {
     public ResponseEntity<List<TypeRepair>> getAll() {
         List<TypeRepair> typeRepairs = typeRepairService.getAll();
         return ResponseEntity.ok(typeRepairs);
+    }
+
+    @GetMapping("/getNameByNumber/{number}")
+    public ResponseEntity<String> getNameByNumber(@PathVariable Integer number) {
+        String description = typeRepairService.getNameByNumber(number);
+        return ResponseEntity.ok(description);
+    }
+
+    @GetMapping("/getNumberByName")
+    public ResponseEntity<Integer> getNumberByName(@RequestParam String name) {
+        Integer number = typeRepairService.getNumberByName(name);
+        return ResponseEntity.ok(number);
     }
 }

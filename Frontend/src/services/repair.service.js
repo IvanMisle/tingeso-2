@@ -20,4 +20,12 @@ const create = data => {
     return httpClient.post('/repair/', data);
 }
 
-export default { getByIdCar, remove, get, update, create };
+const addTypes = (idRepair, data) => {
+    return httpClient.post(`/repair/typeRepair/${idRepair}`, data);
+}
+
+const getNumbersByIdRepair = id => {
+    return httpClient.get(`/repair/typeRepair/getNumbersByIdRepair/${id}`);
+}
+
+export default { getByIdCar, remove, get, update, create, getNumbersByIdRepair, addTypes };

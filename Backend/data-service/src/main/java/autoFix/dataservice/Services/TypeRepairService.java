@@ -15,4 +15,12 @@ public class TypeRepairService {
     public List<TypeRepair> getAll() {
         return typeRepairRepository.findAll();
     }
+
+    public String getNameByNumber(Integer number) {
+        return typeRepairRepository.findNameByNumber(number);
+    }
+
+    public Integer getNumberByName(String name) {
+        return typeRepairRepository.findNumberByName(name);
+    }
 }
