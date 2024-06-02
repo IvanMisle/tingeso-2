@@ -16,4 +16,9 @@ public interface RepairRepository extends JpaRepository<Repair, Long> {
             "FROM repair r\n" +
             "WHERE r.id = :idRepair", nativeQuery = true)
     Long findIdCarByIdRepair(@Param("idRepair") Long idRepair);
+
+    @Query(value = "SELECT COUNT(*)\n" +
+            "FROM repair r\n" +
+            "WHERE r.id_car = :idCar", nativeQuery = true)
+    Integer numberRepairsByIdCar(Long idCar);
 }

@@ -1,6 +1,7 @@
 package autoFix.repairservice.Controllers;
 
 import autoFix.repairservice.Entities.Repair;
+import autoFix.repairservice.Models.Car;
 import autoFix.repairservice.Services.RepairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,12 @@ public class RepairController {
     public ResponseEntity<Repair> save(@RequestBody Repair repair) {
         Repair result = repairService.save(repair);
         return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/calculate/{idRepair}")
+    private ResponseEntity<Repair> calculate(@PathVariable Long idRepair, @RequestBody Car car) {
+        Repair repair = repairService.calculateCost(idRepair, car);
+        return ResponseEntity.ok(repair);
     }
 
     @PutMapping("/")

@@ -41,7 +41,7 @@ const routes = [
     component: <AddEditRepair />,
   },
   {
-    path: "/DetailRepair/:id/:id_car",
+    path: "/DetailRepair/:id/:idCar",
     component: <DetailRepair />,
   },
 ];

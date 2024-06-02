@@ -5,7 +5,6 @@ import autoFix.repairservice.Models.Car;
 import autoFix.repairservice.Repositories.RepairRepository;
 import autoFix.repairservice.Repositories.TypeRepairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

@@ -18,5 +18,5 @@ public class DiscountNumberRepairs {
     private Integer maxNumberRepairs;
     private Integer minNumberRepairs;
     private String TypeEngine;
-    private float discount;
+    private Float discount;
 }
