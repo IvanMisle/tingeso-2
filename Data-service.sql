@@ -1,3 +1,9 @@
+INSERT INTO bonus (bonus, amount, brand) VALUES
+(70000, 5, 'Toyota'),
+(50000, 2, 'Ford'),
+(30000, 1, 'Hyundai'),
+(40000, 7, 'Honda');
+
 INSERT INTO discount_number_repairs (min_number_repairs, max_number_repairs, type_engine, discount) VALUES
 (0, 0, 'Gasolina', 0),
 (0, 0, 'Diésel', 0),

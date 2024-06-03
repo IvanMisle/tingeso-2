@@ -26,6 +26,12 @@ public class CarController {
         return ResponseEntity.ok(car);
     }
 
+    @GetMapping("/getBonus/{idCar}")
+    public ResponseEntity<Integer> getBonus(@PathVariable Long idCar) {
+        Integer bonus = carService.getBonus(idCar);
+        return ResponseEntity.ok(bonus);
+    }
+
     @PostMapping("/")
     public ResponseEntity<Car> save(@RequestBody Car car) {
         Car newCar = carService.save(car);

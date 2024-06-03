@@ -32,4 +32,8 @@ const getTypesByIdRepair = id => {
     return httpClient.get(`/repair/typeRepair/getByIdRepair/${id}`);
 }
 
-export default { getByIdCar, remove, get, update, create, getNumbersByIdRepair, addTypes, getTypesByIdRepair };
+const getBonus = id => {
+    return httpClient.get(`/repair/getBonus/${id}`);
+}
+
+export default { getByIdCar, remove, get, update, create, getNumbersByIdRepair, addTypes, getTypesByIdRepair, getBonus };

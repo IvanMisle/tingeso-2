@@ -5,6 +5,7 @@ import autoFix.repairservice.Entities.TypeRepair;
 import autoFix.repairservice.Models.Car;
 import autoFix.repairservice.Repositories.RepairRepository;
 import autoFix.repairservice.Repositories.TypeRepairRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,13 +14,16 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class RepairService {
     @Autowired
     private RepairRepository repairRepository;
+
     @Autowired
     private TypeRepairRepository typeRepairRepository;
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -32,6 +36,20 @@ public class RepairService {
     }
 
     public Repair save(Repair repair) {
+        if (repair.getId() != null) {
+            Repair oldRepair = repairRepository.findById(repair.getId()).get();
+            if (!Objects.equals(oldRepair.getBonus(), repair.getBonus())) {
+                Car car = restTemplate.getForObject("http://car-service/car/" + repair.getIdCar(), Car.class);
+                if (repair.getBonus() > 0) {
+                    restTemplate.put("http://data-service/data/bonus/setAmount/" + car.getBrand() + "/" + -1, null);
+                } else {
+                    restTemplate.put("http://data-service/data/bonus/setAmount/" + car.getBrand() + "/" + 1, null);
+                }
+            }
+        } else if (repair.getBonus() > 0) {
+            Car car = restTemplate.getForObject("http://car-service/car/" + repair.getIdCar(), Car.class);
+            restTemplate.put("http://data-service/data/bonus/setAmount/" + car.getBrand() + "/" + -1, null);
+        }
         return repairRepository.save(repair);
     }
 
@@ -86,13 +104,40 @@ public class RepairService {
         repair.setIva(iva);
 
         float finalCost = (cost * (1 + totalFee - totalDiscount)) + iva;
+        if (repair.getBonus() != null && repair.getBonus() > 0) {
+            finalCost -= repair.getBonus();
+        }
         repair.setFinalCost(finalCost);
 
         return repairRepository.save(repair);
     }
 
+    public Integer getBonus(Long idRepair) {
+        Repair repair = repairRepository.findById(idRepair).get();
+
+        //Si la reparación ya tiene el bonus
+        if (repair.getBonus() != null && repair.getBonus() > 0) {
+            return repair.getBonus();
+        }
+
+        //Si ya existe una reparación de ese vehiculo que tiene bonus
+        List<Repair> repairs = repairRepository.findByIdCar(repair.getIdCar());
+        for (Repair r : repairs) {
+            if (r.getBonus() != null && r.getBonus() > 0) {
+                return 0;
+            }
+        }
+
+        //Si el vehiculo no tiene bonus agregados
+        Car car = restTemplate.getForObject("http://car-service/car/" + repair.getIdCar(), Car.class);
+        Integer bonus = restTemplate.getForObject("http://data-service/data/bonus/" + car.getBrand(), Integer.class);
+        return bonus;
+    }
+
     public boolean delete(Long id) throws Exception{
         try {
+            List<TypeRepair> types = typeRepairRepository.findByIdRepair(id);
+            typeRepairRepository.deleteAll(types);
             repairRepository.deleteById(id);
             return true;
         } catch (Exception e) {

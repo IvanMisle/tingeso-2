@@ -1,11 +1,13 @@
 package autoFix.repairservice.Services;
 
+import autoFix.repairservice.Entities.Repair;
 import autoFix.repairservice.Entities.TypeRepair;
 import autoFix.repairservice.Models.Car;
 import autoFix.repairservice.Repositories.RepairRepository;
 import autoFix.repairservice.Repositories.TypeRepairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
@@ -19,6 +21,9 @@ public class TypeRepairService {
 
     @Autowired
     private RepairRepository repairRepository;
+
+    @Autowired
+    private RepairService repairService;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -49,6 +54,7 @@ public class TypeRepairService {
             newTypeRepair.setTypeRepair(name);
             newTypeRepairs.add(typeRepairRepository.save(newTypeRepair));
         }
+        repairService.calculateCost(idRepair, car);
         return newTypeRepairs;
     }
 

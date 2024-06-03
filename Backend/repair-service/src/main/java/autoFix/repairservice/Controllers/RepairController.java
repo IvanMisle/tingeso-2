@@ -27,6 +27,12 @@ public class RepairController {
         return ResponseEntity.ok(repairs);
     }
 
+    @GetMapping("/getBonus/{idRepair}")
+    public ResponseEntity<Integer> getbonus(@PathVariable Long idRepair) {
+        Integer bonus = repairService.getBonus(idRepair);
+        return ResponseEntity.ok(bonus);
+    }
+
     @PostMapping("/")
     public ResponseEntity<Repair> save(@RequestBody Repair repair) {
         Repair result = repairService.save(repair);

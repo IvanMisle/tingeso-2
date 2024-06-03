@@ -19,6 +19,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import carService from "../services/car.service";
 
 function AddEditRepair() {
   const { id_Car, id } = useParams();
@@ -29,8 +30,33 @@ function AddEditRepair() {
   const [dateTimePickUp, setDateTimePickUp] = useState(null);
   const [typeRepairs, setTypeRepairs] = useState([]);
   const [typesToAdd, setTypesToAdd] = useState([]);
+  const [bonus, setBonus] = useState(0);
+  const [bonusButton, setBonusButton] = useState(false);
+
+  function getBonus() {
+    if (id) {
+      repairService
+        .getBonus(id)
+        .then((response) => {
+          setBonus(response.data);
+        })
+        .catch((error) => {
+          console.log("Error al obtener el bono", error);
+        });
+    } else {
+      carService
+        .getBonus(id_Car)
+        .then((response) => {
+          setBonus(response.data);
+        })
+        .catch((error) => {
+          console.log("Error al obtener el bono", error);
+        });
+    }
+  }
 
   useEffect(() => {
+    getBonus();
     dataService
     .getAll()
     .then((response) => {
@@ -59,6 +85,9 @@ function AddEditRepair() {
           }
           if (repair.data.dateTimePickUp !== null) {
             setDateTimePickUp(dayjs(repair.data.dateTimePickUp));
+          }
+          if (repair.data.bonus > 0) {
+            setBonusButton(true);
           }
         })
         .catch((error) => {
@@ -109,11 +138,18 @@ function AddEditRepair() {
       alert("La fecha y hora del retiro del vehiculo no puede ser antes de la fecha y hora del termino de las reparaciones.");
       return;
     }
+    let bono;
+    if (!bonusButton) {
+      bono = 0;
+    } else {
+      bono = bonus;
+    }
     const repair = {
       id,
       dateTimeEntry: entry,
       dateTimeExit: exit,
       dateTimePickUp: pickUp,
+      bonus: bono,
       idCar: id_Car,
     };
     if (id) {
@@ -196,6 +232,23 @@ function AddEditRepair() {
             </MenuItem>
           ))}
         </Select>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            mt: 2,
+          }}
+        >
+          <label>
+            {bonusButton ? "Quitar bono" : "Agregar bono"} de ${bonus}
+            <Switch
+              disabled={bonus === 0}
+              checked={bonusButton}
+              inputProps={{ "aria-label": "activar/desactivar" }}
+              onChange={(e) => setBonusButton(e.target.checked)}
+            />
+          </label>
+        </Box>
       </FormControl>
       <Button
         variant="contained"

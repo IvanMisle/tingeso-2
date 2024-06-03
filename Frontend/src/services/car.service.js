@@ -20,4 +20,8 @@ const update = data => {
     return httpClient.put(`/car/`, data);
 }
 
-export default { getAll, create, get, remove, update };
+const getBonus = id => {
+    return httpClient.get(`/car/getBonus/${id}`);
+}
+
+export default { getAll, create, get, remove, update, getBonus };
