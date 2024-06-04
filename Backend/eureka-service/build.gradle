@@ -36,8 +36,9 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-jar {
-	archiveFileName.set('eureka-service.jar')
+bootJar {
+	archiveFileName = 'eureka-service.jar'
+	mainClass = 'autoFix.eurekaservice.EurekaServiceApplication'
 }
 
 test {

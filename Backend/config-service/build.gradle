@@ -35,8 +35,9 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-jar {
-	archiveFileName.set('config-service.jar')
+bootJar {
+	archiveFileName = 'config-service.jar'
+	mainClass = 'autoFix.configservice.ConfigServiceApplication'
 }
 
 test {

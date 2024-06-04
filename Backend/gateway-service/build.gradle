@@ -37,8 +37,9 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-jar {
-	archiveFileName.set('gateway-service.jar')
+bootJar {
+	archiveFileName = 'gateway-service.jar'
+	mainClass = 'autoFix.gatewayservice.GatewayServiceApplication'
 }
 
 test {
