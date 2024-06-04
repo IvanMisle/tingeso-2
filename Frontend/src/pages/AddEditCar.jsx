@@ -68,7 +68,6 @@ function AddEditCar() {
       carService
         .update(car)
         .then((response) => {
-          console.log("Vehiculo ha sido actualizado.", response.data);
           navigate("/carList");
         })
         .catch((error) => {
@@ -81,7 +80,6 @@ function AddEditCar() {
       carService
         .create(car)
         .then((response) => {
-          console.log("Vehiculo ha sido añadido.", response.data);
           navigate("/carList");
         })
         .catch((error) => {

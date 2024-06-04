@@ -102,7 +102,6 @@ function AddEditRepair() {
     repairService
       .addTypes(idRepair, typesToAdd)
       .then((response) => {
-        console.log("Tipos de reparación han sido añadidos.", response.data);
         navigate(`/repairList/${id_Car}`);
       })
       .catch((error) => {
@@ -156,7 +155,6 @@ function AddEditRepair() {
       repairService
         .update(repair)
         .then((response) => {
-          console.log("Reparación ha sido actualizada.", response.data);
           navigate(`/repairList/${id_Car}`);
         })
         .catch((error) => {
@@ -169,7 +167,6 @@ function AddEditRepair() {
         .create(repair)
         .then((response) => {
           idRepair = response.data.id;
-          console.log("Reparación ha sido creada.", response.data);
         })
         .catch((error) => {
           console.log("Error al crear reparación", error);

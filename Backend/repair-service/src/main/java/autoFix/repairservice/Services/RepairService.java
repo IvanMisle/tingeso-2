@@ -135,6 +135,11 @@ public class RepairService {
     }
 
     public boolean delete(Long id) throws Exception{
+        Repair repair = repairRepository.findById(id).get();
+        if (repair.getBonus() != null && repair.getBonus() > 0) {
+            Car car = restTemplate.getForObject("http://car-service/car/" + repair.getIdCar(), Car.class);
+            restTemplate.put("http://data-service/data/bonus/setAmount/" + car.getBrand() + "/" + 1, null);
+        }
         try {
             List<TypeRepair> types = typeRepairRepository.findByIdRepair(id);
             typeRepairRepository.deleteAll(types);

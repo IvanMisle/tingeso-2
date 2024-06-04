@@ -46,7 +46,6 @@ function CarList() {
       carService
         .remove(id)
         .then((response) => {
-          console.log("Vehiculo ha sido eliminado.", response.data);
           init();
         })
         .catch((error) => {
