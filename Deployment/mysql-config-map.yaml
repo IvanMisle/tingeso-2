@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config-map
+  labels:
+    app: mysql-config-map
+data:
+  DB_HOST_CAR: dbcar-service
+  DB_PORT_CAR: "5432"
+  DB_DBNAME_CAR: dbcar
+  DB_HOST_REPAIR: dbrepair-service
+  DB_PORT_REPAIR: "5433"
+  DB_DBNAME_REPAIR: dbrepair
+  DB_HOST_DATA: dbdata-service
+  DB_PORT_DATA: "5434"
+  DB_DBNAME_DATA: dbdata
