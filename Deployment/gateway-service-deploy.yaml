@@ -21,18 +21,18 @@ spec:
             - containerPort: 8090
           env:
             - name: CONFIG_HOST
-              value: config-service
+              value: config-service-service
             - name: CONFIG_PORT
               value: "8081"
             - name: EUREKA_HOST
-              value: eureka-service
+              value: eureka-service-service
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: gateway-service
+  name: gateway-service-service
   labels:
-    app: gateway-service
+    app: gateway-service-service
 spec:
   selector:
     app: gateway-service-deploy
