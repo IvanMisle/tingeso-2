@@ -24,6 +24,8 @@ spec:
               value: "config-service"
             - name: CONFIG_PORT
               value: "8081"
+            - name: EUREKA_HOST
+              value: "eureka-service"
 ---
 apiVersion: v1
 kind: Service
