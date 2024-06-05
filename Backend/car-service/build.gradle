@@ -47,8 +47,9 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-jar {
-	archiveFileName.set('car-service.jar')
+bootJar {
+	archiveFileName = 'car-service.jar'
+	mainClass = 'autoFix.carservice.CarServiceApplication'
 }
 
 test {
