@@ -9,7 +9,7 @@ spec:
     matchLabels:
       app: car-service-deployment
   replicas: 1
-  template:c
+  template:
     metadata:
       labels:
         app: car-service-deployment
