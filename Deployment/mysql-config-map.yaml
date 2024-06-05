@@ -6,11 +6,11 @@ metadata:
     app: mysql-config-map
 data:
   DB_HOST_CAR: dbcar-service
-  DB_PORT_CAR: "5432"
+  DB_PORT_CAR: "3306"
   DB_DBNAME_CAR: dbcar
   DB_HOST_REPAIR: dbrepair-service
-  DB_PORT_REPAIR: "5433"
+  DB_PORT_REPAIR: "3307"
   DB_DBNAME_REPAIR: dbrepair
   DB_HOST_DATA: dbdata-service
-  DB_PORT_DATA: "5434"
+  DB_PORT_DATA: "3308"
   DB_DBNAME_DATA: dbdata

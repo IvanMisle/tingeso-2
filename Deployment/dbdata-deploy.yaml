@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: dbdata-pv
+  labels:
+    type: local
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/dbdata-data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dbdata-pvc
+  labels:
+    app: mysql
+    tier: database
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dbdata-deployment
+  labels:
+    app: dbdata-deployment
+    tier: database
+spec:
+  selector:
+    matchLabels:
+      app: dbdata-deployment
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: dbdata-deployment
+        tier: database
+    spec:
+      containers:
+        - name: dbdata
+          image: mysql
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials
+                  key: DB_PASSWORD_DATA
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config-map
+                  key: DB_DBNAME_DATA
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: dbdata-data
+      volumes:
+        - name: dbdata-data
+          persistentVolumeClaim:
+            claimName: dbdata-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dbdata-service
+  labels:
+    app: dbdata-service
+    tier: database
+spec:
+  ports:
+    - port: 3308
+      targetPort: 3306
+      protocol: TCP
+  selector:
+    app: dbdata-deployment
+    tier: database
+  type: LoadBalancer
