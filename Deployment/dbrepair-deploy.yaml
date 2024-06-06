@@ -31,20 +31,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dbrepair-deployment
+  name: dbrepair-deploy
   labels:
-    app: dbrepair-deployment
+    app: dbrepair-deploy
     tier: database
 spec:
   selector:
     matchLabels:
-      app: dbrepair-deployment
+      app: dbrepair-deploy
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: dbrepair-deployment
+        app: dbrepair-deploy
         tier: database
     spec:
       containers:
@@ -85,6 +85,6 @@ spec:
       targetPort: 3306
       protocol: TCP
   selector:
-    app: dbrepair-deployment
+    app: dbrepair-deploy
     tier: database
   type: LoadBalancer

@@ -31,20 +31,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dbdata-deployment
+  name: dbdata-deploy
   labels:
-    app: dbdata-deployment
+    app: dbdata-deploy
     tier: database
 spec:
   selector:
     matchLabels:
-      app: dbdata-deployment
+      app: dbdata-deploy
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: dbdata-deployment
+        app: dbdata-deploy
         tier: database
     spec:
       containers:
@@ -85,6 +85,6 @@ spec:
       targetPort: 3306
       protocol: TCP
   selector:
-    app: dbdata-deployment
+    app: dbdata-deploy
     tier: database
   type: LoadBalancer

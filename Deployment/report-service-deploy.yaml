@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: report-service-deployment
+  name: report-service-deploy
   labels:
-    app: report-service-deployment
+    app: report-service-deploy
 spec:
   selector:
     matchLabels:
-      app: report-service-deployment
+      app: report-service-deploy
   replicas: 1
   template:
     metadata:
       labels:
-        app: report-service-deployment
+        app: report-service-deploy
     spec:
       containers:
         - name: report-service

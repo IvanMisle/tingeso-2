@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: data-service-deployment
+  name: data-service-deploy
   labels:
-    app: data-service-deployment
+    app: data-service-deploy
 spec:
   selector:
     matchLabels:
-      app: data-service-deployment
+      app: data-service-deploy
   replicas: 1
   template:
     metadata:
       labels:
-        app: data-service-deployment
+        app: data-service-deploy
     spec:
       containers:
         - name: data-service

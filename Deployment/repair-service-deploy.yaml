@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: repair-service-deployment
+  name: repair-service-deploy
   labels:
-    app: repair-service-deployment
+    app: repair-service-deploy
 spec:
   selector:
     matchLabels:
-      app: repair-service-deployment
+      app: repair-service-deploy
   replicas: 1
   template:
     metadata:
       labels:
-        app: repair-service-deployment
+        app: repair-service-deploy
     spec:
       containers:
         - name: repair-service

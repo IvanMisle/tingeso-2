@@ -31,20 +31,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dbcar-deployment
+  name: dbcar-deploy
   labels:
-    app: dbcar-deployment
+    app: dbcar-deploy
     tier: database
 spec:
   selector:
     matchLabels:
-      app: dbcar-deployment
+      app: dbcar-deploy
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: dbcar-deployment
+        app: dbcar-deploy
         tier: database
     spec:
       containers:
@@ -85,6 +85,6 @@ spec:
       targetPort: 3306
       protocol: TCP
   selector:
-    app: dbcar-deployment
+    app: dbcar-deploy
     tier: database
   type: LoadBalancer
