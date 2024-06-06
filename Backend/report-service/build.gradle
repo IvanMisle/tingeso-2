@@ -45,3 +45,12 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+bootJar {
+	archiveFileName = 'report-service.jar'
+	mainClass = 'autoFix.reportservice.ReportServiceApplication'
+}
+
+test {
+	enabled = false
+}

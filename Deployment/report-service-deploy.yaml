@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: report-service-deployment
+  labels:
+    app: report-service-deployment
+spec:
+  selector:
+    matchLabels:
+      app: report-service-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: report-service-deployment
+    spec:
+      containers:
+        - name: report-service
+          image: ivanmisle/report-service
+          ports:
+            - containerPort: 8094
+          env:
+            - name: CONFIG_HOST
+              value: config-service-service
+            - name: CONFIG_PORT
+              value: "8081"
+            - name: EUREKA_HOST
+              value: eureka-service-service
