@@ -47,8 +47,9 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-jar {
-	archiveFileName.set('repair-service.jar')
+bootJar {
+	archiveFileName = 'repair-service.jar'
+	mainClass = 'autoFix.repairservice.RepairServiceApplication'
 }
 
 test {

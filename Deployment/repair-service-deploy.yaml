@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: car-service-deployment
+  name: repair-service-deployment
   labels:
-    app: car-service-deployment
+    app: repair-service-deployment
 spec:
   selector:
     matchLabels:
-      app: car-service-deployment
+      app: repair-service-deployment
   replicas: 1
   template:
     metadata:
       labels:
-        app: car-service-deployment
+        app: repair-service-deployment
     spec:
       containers:
-        - name: car-service
-          image: ivanmisle/car-service
+        - name: repair-service
+          image: ivanmisle/repair-service
           ports:
-            - containerPort: 8091
+            - containerPort: 8093
           env:
             - name: CONFIG_HOST
               value: config-service-service
@@ -28,26 +28,26 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: mysql-config-map
-                  key: DB_HOST_CAR
+                  key: DB_HOST_REPAIR
             - name: DB_PORT
               valueFrom:
                 configMapKeyRef:
                   name: mysql-config-map
-                  key: DB_PORT_CAR
+                  key: DB_PORT_REPAIR
             - name: DB_NAME
               valueFrom:
                 configMapKeyRef:
                   name: mysql-config-map
-                  key: DB_DBNAME_CAR
+                  key: DB_DBNAME_REPAIR
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   name: mysql-credentials
-                  key: DB_USER_CAR
+                  key: DB_USER_REPAIR
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mysql-credentials
-                  key: DB_PASSWORD_CAR
+                  key: DB_PASSWORD_REPAIR
             - name: EUREKA_HOST
               value: eureka-service-service

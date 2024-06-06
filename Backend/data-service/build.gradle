@@ -46,3 +46,12 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+bootJar {
+	archiveFileName = 'data-service.jar'
+	mainClass = 'autoFix.dataservice.DataServiceApplication'
+}
+
+test {
+	enabled = false
+}
