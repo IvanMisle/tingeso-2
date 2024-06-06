@@ -18,7 +18,7 @@ spec:
         - name: car-service
           image: ivanmisle/car-service
           ports:
-            - containerPort: 8095
+            - containerPort: 8091
           env:
             - name: CONFIG_HOST
               value: config-service-service
@@ -51,18 +51,3 @@ spec:
                   key: DB_PASSWORD_CAR
             - name: EUREKA_HOST
               value: eureka-service-service
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: car-service-service
-  labels:
-    app: car-service-service
-spec:
-  selector:
-    app: car-service-deploy
-  ports:
-    - protocol: TCP
-      port: 8085
-      targetPort: 8085
-  type: LoadBalancer
