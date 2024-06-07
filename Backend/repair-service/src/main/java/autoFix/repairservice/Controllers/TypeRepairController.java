@@ -15,6 +15,12 @@ public class TypeRepairController {
     @Autowired
     private TypeRepairService typeRepairService;
 
+    @GetMapping("/getByDate/{year}/{month}/{name}")
+    public ResponseEntity<List<TypeRepair>> getByDateAndName(@PathVariable Integer year, @PathVariable Integer month, @PathVariable String name) {
+        List<TypeRepair> typeRepairs = typeRepairService.getByDateAndName(year, month, name);
+        return ResponseEntity.ok(typeRepairs);
+    }
+
     @GetMapping("/getByIdRepair/{idRepair}")
     public ResponseEntity<List<TypeRepair>> getByIdRepair(@PathVariable Long idRepair) {
         List<TypeRepair> typeRepairs = typeRepairService.getByIdRepair(idRepair);

@@ -80,7 +80,7 @@ public class RepairService {
 
         //Total descuentos
         Float totalDiscount = discountNumberRepairs + discountDayAttention;
-        repair.setTotalDiscount(totalDiscount);
+        repair.setTotalDiscount(totalDiscount * cost);
 
         //Recargo por kilometraje
         Float feeMileage = restTemplate.getForObject("http://data-service/data/feeMileage/"
@@ -98,7 +98,7 @@ public class RepairService {
 
         //Recargos totales
         float totalFee = feeMileage + feeLongevity + feeLate;
-        repair.setTotalFee(totalFee);
+        repair.setTotalFee(totalFee * cost);
 
         float iva = (cost * (1 + totalFee - totalDiscount)) * 0.19f;
         repair.setIva(iva);

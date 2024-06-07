@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, HashRouter as Router, Routes } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/Home";
 import CarList from "./pages/CarList";
@@ -6,6 +6,9 @@ import AddEditCar from "./pages/AddEditCar";
 import RepairList from "./pages/RepairList";
 import AddEditRepair from "./pages/AddEditRepair";
 import DetailRepair from "./pages/DetailRepair";
+import Report from "./pages/Report";
+import R1 from "./pages/R1";
+import R2 from "./pages/R2";
 
 const routes = [
   {
@@ -44,6 +47,18 @@ const routes = [
     path: "/DetailRepair/:id/:idCar",
     component: <DetailRepair />,
   },
+  {
+    path: "/Report",
+    component: <Report />,
+  },
+  {
+    path: "/R1",
+    component: <R1 />,
+  },
+  {
+    path: "/R2",
+    component: <R2 />,
+  }
 ];
 
 function App() {

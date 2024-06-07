@@ -40,6 +40,11 @@ const itemsDrawer = [
     icon: <CarRepairIcon />,
   },
   {
+    title: "Report",
+    link: "/Report",
+    icon: <FeedIcon />,
+  },
+  {
     title: "R1",
     link: "/r1",
     icon: <FeedIcon />,
@@ -49,16 +54,6 @@ const itemsDrawer = [
     link: "/r2",
     icon: <FeedIcon />,
   },
-  {
-    title: "R3",
-    link: "/r3",
-    icon: <FeedIcon />,
-  },
-  {
-    title: "R4",
-    link: "/r4",
-    icon: <FeedIcon />,
-  }
 ];
 
 function Navbar() {

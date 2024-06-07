@@ -30,6 +30,10 @@ public class CarService {
         return carRepository.findById(id).get();
     }
 
+    public Car findByLicensePlate(String licensePlate) {
+        return carRepository.findByLicensePlate(licensePlate);
+    }
+
     public Integer getBonus(Long id) {
         List<Repair> repairs = restTemplate.exchange(
                 "http://repair-service/repair/getByIdCar/" + id,

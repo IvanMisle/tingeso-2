@@ -1,13 +1,11 @@
 package autoFix.repairservice.Services;
 
-import autoFix.repairservice.Entities.Repair;
 import autoFix.repairservice.Entities.TypeRepair;
 import autoFix.repairservice.Models.Car;
 import autoFix.repairservice.Repositories.RepairRepository;
 import autoFix.repairservice.Repositories.TypeRepairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
@@ -27,6 +25,10 @@ public class TypeRepairService {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    public List<TypeRepair> getByDateAndName(Integer year, Integer month, String name) {
+        return typeRepairRepository.findByDateAndName(year, month, name);
+    }
 
     public List<TypeRepair> getByIdRepair(Long idRepair) {
         return typeRepairRepository.findByIdRepair(idRepair);

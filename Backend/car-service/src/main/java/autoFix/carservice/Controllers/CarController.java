@@ -26,6 +26,12 @@ public class CarController {
         return ResponseEntity.ok(car);
     }
 
+    @GetMapping("/getByLicensePlate/{licensePlate}")
+    public ResponseEntity<Car> getByLicensePlate(@PathVariable String licensePlate) {
+        Car car = carService.findByLicensePlate(licensePlate);
+        return ResponseEntity.ok(car);
+    }
+
     @GetMapping("/getBonus/{idCar}")
     public ResponseEntity<Integer> getBonus(@PathVariable Long idCar) {
         Integer bonus = carService.getBonus(idCar);

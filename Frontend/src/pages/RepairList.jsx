@@ -87,8 +87,8 @@ function RepairList() {
             <TableRow>
               <TableCell align="left">Fecha y hora de entrada</TableCell>
               <TableCell align="center">Monto base ($)</TableCell>
-              <TableCell align="center">Total descuentos</TableCell>
-              <TableCell align="center">Total recargos</TableCell>
+              <TableCell align="center">Total descuentos sin bono ($)</TableCell>
+              <TableCell align="center">Total recargos ($)</TableCell>
               <TableCell align="center">Monto IVA ($)</TableCell>
               <TableCell align="center">Precio final ($)</TableCell>
               <TableCell align="center">Fecha y hora de salida</TableCell>
@@ -107,9 +107,9 @@ function RepairList() {
                 </TableCell>
                 <TableCell align="center">{repair.amount * 1}</TableCell>
                 <TableCell align="center">
-                  {repair.totalDiscount * 100}%
+                  {repair.totalDiscount}
                 </TableCell>
-                <TableCell align="center">{repair.totalFee * 100}%</TableCell>
+                <TableCell align="center">{repair.totalFee}</TableCell>
                 <TableCell align="center">{repair.iva * 1}</TableCell>
                 <TableCell align="center">{repair.finalCost * 1}</TableCell>
                 <TableCell align="center">
