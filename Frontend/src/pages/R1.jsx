@@ -44,11 +44,11 @@ function R1() {
       .getReport1(year, month)
       .then((response) => {
         setReport(response.data);
+        setFlag(true);
       })
       .catch((e) => {
         console.error(e);
       });
-    setFlag(true);
   }
 
   return (

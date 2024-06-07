@@ -24,4 +24,16 @@ public interface TypeRepairRepository extends JpaRepository<TypeRepair, Long> {
             "MONTH(tr.date) = :month AND " +
             "tr.type_repair = :name", nativeQuery = true)
     List<TypeRepair> findByDateAndName(@Param("year") Integer year, @Param("month") Integer month, @Param("name") String name);
+
+    @Query(value = "SELECT SUM(tr.cost)\n" +
+            "FROM type_repair tr\n" +
+            "WHERE MONTH(tr.date) = :month AND\n" +
+            "tr.type_repair = :name", nativeQuery = true)
+    Integer findCostByMonthAndName(@Param("month") Integer month, @Param("name") String name);
+
+    @Query(value = "SELECT COUNT(*)\n" +
+            "FROM type_repair tr\n" +
+            "WHERE MONTH(tr.date) = :month AND\n" +
+            "tr.type_repair = :name", nativeQuery = true)
+    Integer findCountByMonthAndName(@Param("month") Integer month, @Param("name") String name);
 }

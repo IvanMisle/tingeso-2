@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TypeRepairService {
@@ -32,6 +33,15 @@ public class TypeRepairService {
 
     public List<TypeRepair> getByIdRepair(Long idRepair) {
         return typeRepairRepository.findByIdRepair(idRepair);
+    }
+
+    public Integer getCostByMonthAndName(Integer month, String name) {
+        Integer cost = typeRepairRepository.findCostByMonthAndName(month, name);
+        return Objects.requireNonNullElse(cost, 0);
+    }
+
+    public Integer getCountByMonthAndName(Integer month, String name) {
+        return typeRepairRepository.findCountByMonthAndName(month, name);
     }
 
     public List<TypeRepair> save(Long idRepair, List<Integer> typesNumbers) {

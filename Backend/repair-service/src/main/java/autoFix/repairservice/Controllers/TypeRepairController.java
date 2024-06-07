@@ -33,6 +33,18 @@ public class TypeRepairController {
         return ResponseEntity.ok(numbers);
     }
 
+    @GetMapping("/getCostByMonthAndName/{month}/{name}")
+    public ResponseEntity<Integer> getCostByMonthAndName(@PathVariable Integer month, @PathVariable String name) {
+        Integer cost = typeRepairService.getCostByMonthAndName(month, name);
+        return ResponseEntity.ok(cost);
+    }
+
+    @GetMapping("/getCountByMonthAndName/{month}/{name}")
+    public ResponseEntity<Integer> getCountByMonthAndName(@PathVariable Integer month, @PathVariable String name) {
+        Integer count = typeRepairService.getCountByMonthAndName(month, name);
+        return ResponseEntity.ok(count);
+    }
+
     @PostMapping("/{idRepair}")
     public ResponseEntity<List<TypeRepair>> saveTypeRepairs(@PathVariable Long idRepair, @RequestBody List<Integer> typesNumbers) {
         List<TypeRepair> typeRepairs = typeRepairService.save(idRepair, typesNumbers);
